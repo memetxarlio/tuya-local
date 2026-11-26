@@ -1,0 +1,58 @@
+name: Cecotec ReadyWarm 6000 Thermal Ceramic 
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 50
+          max: 350
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: mod_comfort
+            value: comfort
+          - dps_val: mod_eco
+            value: eco
+          - dps_val: mod_antifrost
+            value: away
+          - dps_val: mod_p1
+            value: program_1
+          - dps_val: mod_p2
+            value: program_2
+          - dps_val: mod_p3
+            value: program_3
+  - entity: sensor
+    name: Status
+    category: diagnostic
+    dps:
+      - id: 11
+        type: string
+        name: sensor
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 21
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
